@@ -1,10 +1,10 @@
 import numpy
 
 
-def get_test_train(X, y, split, shuffle=False)
-	X = feats.astype(numpy.float32)
+def get_test_train(X, y, split, shuffle=False):
+	X = X.astype(numpy.float32)
 	y = y.astype(numpy.float32)
-	idxs = numpy.arange(NUM)
+	idxs = numpy.arange(X.shape[0])
 	if shuffle:
 		numpy.random.shuffle(idxs)
 	train_idxs = idxs[:split]
