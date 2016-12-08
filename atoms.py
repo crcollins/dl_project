@@ -19,8 +19,9 @@ names2 = ["feats/benzeneatom/0%02d001.npy" % i for i in xrange(num)]
 feats1 = numpy.vstack([numpy.load(x) for x in names1])
 feats2 = numpy.vstack([numpy.load(x) for x in names2])
 feats = numpy.concatenate([feats1, feats2], axis=2)
-y = numpy.loadtxt("data/benzene_energies.txt")[:NUM]
-#y = numpy.loadtxt("data/benzene_energies_ht.txt")[:NUM] * 27
+X = feats.astype(numpy.float32)
+#y = numpy.loadtxt("data/benzene_energies.txt")[:NUM]
+y = numpy.loadtxt("data/benzene_energies_ht.txt")[:NUM] * 27
 
 
 X_train, y_train, X_test, y_test = get_test_train(X, y, split)
@@ -51,5 +52,6 @@ print(model.summary())
 pprint.pprint(model.get_config())
 
 model.fit([X_train[:,i,:] for i in xrange(12)], y_train, nb_epoch=1000, validation_split=0.2)
+model.save("models/atom_model.keras")
 print(model.evaluate([X_train[:,i,:] for i in xrange(12)], y_train)*y_std)
 print(model.evaluate([X_test[:,i,:] for i in xrange(12)], (y_test-y_mean)/y_std)*y_std)
