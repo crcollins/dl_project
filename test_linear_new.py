@@ -6,8 +6,8 @@ NUM = num*1000
 split = int(NUM*.9)
 names = ["feats/benzene%s/0%02d001.npy" % (sys.argv[1], i) for i in xrange(num)]
 feats = numpy.vstack([numpy.load(x) for x in names])
-#y = numpy.loadtxt("data/datasets_public/benzene_energies.txt")[:NUM] 
-y = numpy.loadtxt("data/datasets_public/benzene_energies_ht.txt")[:NUM] * 27
+#y = numpy.loadtxt("data/benzene_energies.txt")[:NUM] 
+y = numpy.loadtxt("data/benzene_energies_ht.txt")[:NUM] * 27
 
 idxs = numpy.arange(NUM)
 #numpy.random.shuffle(idxs)
@@ -42,7 +42,7 @@ plt.scatter(X.dot(mm[1][:,0]).real, X.dot(mm[1][:, 1]).real, c=y, lw=0)
 plt.show()
 
 
-all_forces = numpy.loadtxt("data/datasets_public/benzene_forces_ht.txt")[:NUM, :]
+all_forces = numpy.loadtxt("data/benzene_forces_ht.txt")[:NUM, :]
 all_forces *= 51.42207
 names2 = ["feats/benzeneDereps3/0%02d001.npy" % i for i in xrange(num)]
 epsfeats = numpy.vstack([numpy.load(x) for x in names2])

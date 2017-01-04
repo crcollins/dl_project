@@ -4,7 +4,7 @@ import sys
 import numpy
 
 from molml.features import EncodedBond, BagOfBonds, LocalEncodedBond, BehlerParrinello
-from addon import LocalEncodedBond2
+from addon import LocalAxisEncodedBond
 
 
 def load_xyz(path):
